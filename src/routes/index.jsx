@@ -10,6 +10,7 @@ import CalendarPage from '../features/calendar/pages/CalendarPage';
 import StatsPage from '../features/profile/pages/StatsPage';
 import ProfilePage from '../features/profile/pages/ProfilePage';
 import ThemePage from '../features/profile/pages/ThemePage';
+import EditProfilePage from '../features/profile/pages/EditProfilePage';
 import HabitsPage from '../features/tasks/pages/HabitsPage';
 import SearchPage from '../features/tasks/pages/SearchPage';
 
@@ -57,6 +58,7 @@ export default function AppRouter() {
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/theme" element={<ThemePage />} />
+          <Route path="/profile/edit" element={<EditProfilePage />} />
           <Route path="/habits" element={<HabitsPage />} />
           <Route path="/search" element={<SearchPage />} />
         </Route>

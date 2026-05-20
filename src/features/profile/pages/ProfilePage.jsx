@@ -49,9 +49,9 @@ const ProfilePage = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-8 flex flex-col items-center rounded-b-[32px]" style={{ background: 'var(--color-card)' }}>
         {/* Avatar */}
-        <div className="w-20 h-20 rounded-full flex items-center justify-center text-[28px] font-semibold text-white border-[3px] border-white shadow-lg mb-3" style={{ fontFamily: 'Fredoka, sans-serif', background: `linear-gradient(135deg, var(--color-primary-light), var(--color-primary))`, boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
+        <button onClick={() => navigate('/profile/edit')} className="w-20 h-20 rounded-full flex items-center justify-center text-[28px] font-semibold text-white border-[3px] border-white shadow-lg mb-3" style={{ fontFamily: 'Fredoka, sans-serif', background: `linear-gradient(135deg, var(--color-primary-light), var(--color-primary))`, boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
           {user?.name?.charAt(0) || 'J'}S
-        </div>
+        </button>
 
         <h1 className="text-xl font-semibold mb-0.5" style={{ fontFamily: 'Fredoka, sans-serif', color: 'var(--color-text)' }}>
           {user?.name || 'Josue'} S.
