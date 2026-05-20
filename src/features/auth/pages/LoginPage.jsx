@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('josue@ejemplo.com');
@@ -8,18 +10,25 @@ const LoginPage = () => {
   const [passFocused, setPassFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    setError('');
+    
+    const result = await login(email, password);
+    
+    if (result.success) {
       setLoginSuccess(true);
       setTimeout(() => {
-        setLoginSuccess(false);
-        // TODO: navegar al dashboard
-        console.log('Login exitoso');
-      }, 2000);
-    }, 900);
+        navigate('/dashboard');
+      }, 1500);
+    } else {
+      setIsLoading(false);
+      setError(result.error);
+    }
   };
 
   const getButtonText = () => {
@@ -29,9 +38,9 @@ const LoginPage = () => {
   };
 
   const getButtonBg = () => {
-    if (loginSuccess) return '#6D9E68';
-    if (isLoading) return '#7A9F75';
-    return '#8FAF8A';
+    if (loginSuccess) return '#8FBF8A';
+    if (isLoading) return '#9DC898';
+    return '#A8D4A2';
   };
 
   return (
@@ -62,7 +71,7 @@ const LoginPage = () => {
             </svg>
           </div>
           <div className="text-[30px] font-semibold text-[#4A3F34] tracking-tight mb-0.5" style={{ fontFamily: 'Fredoka, system-ui, sans-serif' }}>
-            nori
+            serene
           </div>
           <div className="text-xs text-[#8A7E72] tracking-widest uppercase font-semibold">
             Tu espacio de calma productiva
@@ -171,7 +180,7 @@ const LoginPage = () => {
             style={{
               fontFamily: 'Fredoka, system-ui, sans-serif',
               background: getButtonBg(),
-              boxShadow: '0 4px 18px rgba(143,175,138,.38), 0 1px 4px rgba(143,175,138,.2)',
+              boxShadow: '0 4px 18px rgba(154,178,155,.35), 0 1px 4px rgba(154,178,155,.2)',
               letterSpacing: '0.03em',
             }}
           >
@@ -209,7 +218,11 @@ const LoginPage = () => {
         {/* Bottom area */}
         <div className="mt-6 text-center">
           <p className="text-xs text-[#9A9080] mb-0.5">¿Primera vez aquí?</p>
-          <button className="text-sm font-semibold text-[#8FAF8A] tracking-wide" style={{ fontFamily: 'Fredoka, system-ui, sans-serif' }}>
+          <button 
+            onClick={() => navigate('/register')}
+            className="text-sm font-semibold text-[#8FAF8A] tracking-wide" 
+            style={{ fontFamily: 'Fredoka, system-ui, sans-serif' }}
+          >
             Crear cuenta gratis ›
           </button>
         </div>

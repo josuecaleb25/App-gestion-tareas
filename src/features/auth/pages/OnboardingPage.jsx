@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const steps = [
   {
@@ -30,9 +32,11 @@ const steps = [
   }
 ];
 
-const OnboardingPage = ({ onComplete }) => {
+const OnboardingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
+  const { completeOnboarding } = useAuth();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -48,7 +52,8 @@ const OnboardingPage = ({ onComplete }) => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      if (onComplete) onComplete();
+      completeOnboarding();
+      navigate('/login');
     }
   };
 
@@ -59,7 +64,8 @@ const OnboardingPage = ({ onComplete }) => {
   };
 
   const handleSkip = () => {
-    if (onComplete) onComplete();
+    completeOnboarding();
+    navigate('/login');
   };
 
   const current = steps[currentStep];
