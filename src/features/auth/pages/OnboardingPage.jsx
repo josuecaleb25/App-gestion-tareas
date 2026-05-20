@@ -127,7 +127,7 @@ const OnboardingPage = () => {
       
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-2 w-full sticky top-0 z-50 bg-[#fbf9f6]/80 backdrop-blur-md">
-        <div className="text-[22px] leading-7 tracking-tight font-extrabold" style={{ fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif', color: 'var(--color-primary)' }}>
+        <div className="text-[22px] leading-7 tracking-tight font-extrabold text-[#4e6450]" style={{ fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif' }}>
           Serene
         </div>
         {!isLastStep && (
@@ -218,10 +218,9 @@ const OnboardingPage = () => {
               key={index}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentStep 
-                  ? 'w-8 shadow-sm' 
+                  ? 'w-8 bg-[#4e6450] shadow-sm' 
                   : 'w-2 bg-[#c3c8c0]'
               }`}
-              style={index === currentStep ? { background: 'var(--color-primary)' } : {}}
             />
           ))}
         </div>
@@ -232,8 +231,8 @@ const OnboardingPage = () => {
           <div className="w-full">
             <button 
               onClick={handleNext}
-              className="w-full py-4 px-8 rounded-full text-white text-sm font-bold tracking-wide shadow-lg hover:opacity-90 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
-              style={{ background: 'var(--color-primary)', boxShadow: '0 10px 25px rgba(0,0,0,0.12)' }}
+              className="w-full py-4 px-8 rounded-full bg-gradient-to-r from-[#4e6450] to-[#3d6565] text-white text-sm font-bold tracking-wide shadow-lg hover:opacity-90 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+              style={{ boxShadow: '0 10px 25px rgba(78, 100, 80, 0.2)' }}
             >
               Comenzar
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,8 +258,8 @@ const OnboardingPage = () => {
 
             <button 
               onClick={handleNext}
-              className="flex-1 max-w-[240px] h-14 text-white text-sm font-bold tracking-wide rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group"
-              style={{ background: 'var(--color-primary)', boxShadow: '0 10px 25px rgba(0,0,0,0.12)' }}
+              className="flex-1 max-w-[240px] h-14 bg-gradient-to-r from-[#4e6450] to-[#3d6565] text-white text-sm font-bold tracking-wide rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group"
+              style={{ boxShadow: '0 10px 25px rgba(78, 100, 80, 0.2)' }}
             >
               Siguiente
               <svg 
@@ -278,14 +277,6 @@ const OnboardingPage = () => {
         )}
       </footer>
 
-      {/* Footer branding solo en último slide */}
-      {isLastStep && (
-        <div className="pb-2 text-center">
-          <p className="text-xs font-semibold text-[#737972] opacity-40" style={{ fontFamily: 'Nunito Sans, system-ui, sans-serif' }}>
-            Serene Productivity © 2024
-          </p>
-        </div>
-      )}
     </div>
   );
 };
