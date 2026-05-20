@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../features/auth/hooks/useAuth';
 import OnboardingPage from '../features/auth/pages/OnboardingPage';
+import SplashPage from '../features/auth/pages/SplashPage';
 import LoginPage from '../features/auth/pages/LoginPage';
 import RegisterPage from '../features/auth/pages/RegisterPage';
 import MainLayout from '../layouts/MainLayout';
@@ -32,6 +34,11 @@ function AuthRoute({ children }) {
 
 export default function AppRouter() {
   const { hasCompletedOnboarding } = useAuth();
+  const [showSplash, setShowSplash] = useState(true);
+
+  if (showSplash) {
+    return <SplashPage onFinish={() => setShowSplash(false)} />;
+  }
 
   return (
     <BrowserRouter>
