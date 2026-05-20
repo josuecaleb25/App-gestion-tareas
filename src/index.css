@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+  --color-primary: #8FAF8A;
+  --color-primary-light: #C8DFC4;
+  --color-primary-pale: #EEF5EC;
+  --color-background: #F5F0E8;
+  
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

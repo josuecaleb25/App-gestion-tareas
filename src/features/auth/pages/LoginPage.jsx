@@ -38,9 +38,9 @@ const LoginPage = () => {
   };
 
   const getButtonBg = () => {
-    if (loginSuccess) return '#8FBF8A';
-    if (isLoading) return '#9DC898';
-    return '#A8D4A2';
+    if (loginSuccess) return 'var(--color-primary)';
+    if (isLoading) return 'var(--color-primary)';
+    return 'var(--color-primary)';
   };
 
   return (
@@ -220,8 +220,8 @@ const LoginPage = () => {
           <p className="text-xs text-[#9A9080] mb-0.5">¿Primera vez aquí?</p>
           <button 
             onClick={() => navigate('/register')}
-            className="text-sm font-semibold text-[#8FAF8A] tracking-wide" 
-            style={{ fontFamily: 'Fredoka, system-ui, sans-serif' }}
+            className="text-sm font-semibold tracking-wide" 
+            style={{ fontFamily: 'Fredoka, system-ui, sans-serif', color: 'var(--color-primary)' }}
           >
             Crear cuenta gratis ›
           </button>

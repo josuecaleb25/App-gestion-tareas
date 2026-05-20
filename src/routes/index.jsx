@@ -3,25 +3,18 @@ import { useAuth } from '../features/auth/hooks/useAuth';
 import OnboardingPage from '../features/auth/pages/OnboardingPage';
 import LoginPage from '../features/auth/pages/LoginPage';
 import RegisterPage from '../features/auth/pages/RegisterPage';
+import MainLayout from '../layouts/MainLayout';
+import DashboardPage from '../features/tasks/pages/DashboardPage';
+import TasksPage from '../features/tasks/pages/TasksPage';
+import CalendarPage from '../features/calendar/pages/CalendarPage';
+import StatsPage from '../features/profile/pages/StatsPage';
+import ProfilePage from '../features/profile/pages/ProfilePage';
+import ThemePage from '../features/profile/pages/ThemePage';
+import FocusPage from '../features/tasks/pages/FocusPage';
+import HabitsPage from '../features/tasks/pages/HabitsPage';
+import SearchPage from '../features/tasks/pages/SearchPage';
 
-// Placeholder para el dashboard (se creará después)
-function DashboardPage() {
-  const { user, logout } = useAuth();
-  return (
-    <div className="min-h-screen bg-[#fbf9f6] flex items-center justify-center p-6">
-      <div className="bg-white rounded-2xl shadow-lg p-8 max-w-sm w-full text-center">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">Dashboard</h1>
-        <p className="text-gray-600 mb-4">Bienvenido, {user?.name || 'Usuario'}</p>
-        <button
-          onClick={logout}
-          className="px-6 py-2 bg-red-100 text-red-600 rounded-lg font-semibold hover:bg-red-200 transition-colors"
-        >
-          Cerrar sesión
-        </button>
-      </div>
-    </div>
-  );
-}
+import { useNavigate } from 'react-router-dom';
 
 // Ruta protegida
 function ProtectedRoute({ children }) {
@@ -53,35 +46,24 @@ export default function AppRouter() {
           }
         />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={
-            <AuthRoute>
-              <LoginPage />
-            </AuthRoute>
-          }
-        />
+        {/* Auth */}
+        <Route path="/login" element={<AuthRoute><LoginPage /></AuthRoute>} />
+        <Route path="/register" element={<AuthRoute><RegisterPage /></AuthRoute>} />
 
-        {/* Register */}
-        <Route
-          path="/register"
-          element={
-            <AuthRoute>
-              <RegisterPage />
-            </AuthRoute>
-          }
-        />
+        {/* App (protegida con layout) */}
+        <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/stats" element={<StatsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/theme" element={<ThemePage />} />
+          <Route path="/habits" element={<HabitsPage />} />
+          <Route path="/search" element={<SearchPage />} />
+        </Route>
 
-        {/* Dashboard (protegido) */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          }
-        />
+        {/* Focus mode (sin bottom nav) */}
+        <Route path="/focus" element={<ProtectedRoute><FocusPage /></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
