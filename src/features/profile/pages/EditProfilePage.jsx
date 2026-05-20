@@ -64,12 +64,31 @@ const EditProfilePage = () => {
         {/* Avatar section */}
         <div className="flex flex-col items-center mb-6">
           <div className="relative">
-            <div className="w-20 h-20 rounded-full flex items-center justify-center text-[28px] font-semibold text-white border-[3px] border-white shadow-lg" style={{ background: 'var(--color-primary)' }}>
-              {name.charAt(0) || 'U'}
+            <div className="w-20 h-20 rounded-full flex items-center justify-center text-[28px] font-semibold text-white border-[3px] border-white shadow-lg overflow-hidden" style={{ background: 'var(--color-primary)' }}>
+              {user?.avatar ? (
+                <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover" />
+              ) : (
+                name.charAt(0) || 'U'
+              )}
             </div>
-            <button className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center shadow-md" style={{ background: 'var(--color-primary)' }}>
+            <label className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center shadow-md cursor-pointer" style={{ background: 'var(--color-primary)' }}>
               <Icon name="edit" size={12} color="white" />
-            </button>
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      useAuthStore.setState({ user: { ...user, avatar: reader.result } });
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+              />
+            </label>
           </div>
           <p className="text-[11px] mt-2" style={{ color: 'var(--color-text-muted)' }}>Toca para cambiar foto</p>
         </div>

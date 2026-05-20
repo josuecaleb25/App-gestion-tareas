@@ -58,6 +58,16 @@ const ProfilePage = () => {
         </h1>
         <p className="text-[11px] mb-2" style={{ color: 'var(--color-text-muted)' }}>{user?.email || 'josue@estudiante.pe'}</p>
 
+        {/* Botón editar perfil */}
+        <button 
+          onClick={() => navigate('/profile/edit')}
+          className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-4 transition-opacity hover:opacity-80"
+          style={{ background: 'var(--color-primary-pale)', color: 'var(--color-primary)', border: '1px solid var(--color-primary-light)' }}
+        >
+          <Icon name="edit" size={12} color="var(--color-primary)" />
+          Editar perfil
+        </button>
+
         {/* Level badge */}
         <div className="text-[11px] font-semibold text-[#A8896C] bg-[#F2ECE3] px-3 py-1 rounded-full border border-[#D4BFA0] mb-4 flex items-center gap-1">
           <Icon name="leaf" size={12} color="#A8896C" />
