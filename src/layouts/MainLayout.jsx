@@ -58,17 +58,6 @@ const MainLayout = () => {
       {/* Contenido de la página */}
       <Outlet />
 
-      {/* FAB */}
-      <button 
-        className="fixed bottom-24 right-4 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg z-50 active:scale-95 transition-transform"
-        style={{ background: 'var(--color-primary)', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }}
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
-          <line x1="12" y1="5" x2="12" y2="19"/>
-          <line x1="5" y1="12" x2="19" y2="12"/>
-        </svg>
-      </button>
-
       {/* Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-[#FDFAF5] border-t border-[rgba(168,137,108,0.15)] px-4 pt-2 pb-4 flex justify-around items-center z-40">
         {navItems.map((item) => {

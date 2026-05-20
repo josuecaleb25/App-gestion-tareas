@@ -6,7 +6,7 @@ const FocusPage = () => {
   const navigate = useNavigate();
   const [isRunning, setIsRunning] = useState(true);
   const [seconds, setSeconds] = useState(24 * 60 + 35); // 24:35
-  const [currentSession, setCurrentSession] = useState(2);
+  const [currentSession] = useState(2);
   const totalSessions = 4;
 
   useEffect(() => {

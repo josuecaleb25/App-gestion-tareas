@@ -1,6 +1,7 @@
 import Icon from '../../../components/icons';
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useThemeColors } from '../../../hooks/useTheme';
+import useTaskStore from '../../../store/taskStore';
 
 const ProgressRing = ({ percentage, color, value, subtitle, label }) => {
   const radius = 28;
@@ -27,7 +28,7 @@ const ProgressRing = ({ percentage, color, value, subtitle, label }) => {
   );
 };
 
-const TaskItem = ({ done, name, priority }) => {
+const TaskItem = ({ done, name, priority, onToggle }) => {
   const tagStyles = {
     high: 'bg-[#F8EDE9] text-[#D4A898] border-[#E8C8BC]',
     med: 'bg-[#EEE9F5] text-[#A89BC0] border-[#CFC7E0]',
@@ -37,11 +38,13 @@ const TaskItem = ({ done, name, priority }) => {
 
   return (
     <div className="flex items-center gap-2.5 py-2.5 border-b border-[rgba(168,137,108,0.15)] last:border-b-0">
-      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0`}
+      <button 
+        onClick={onToggle}
+        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0`}
         style={done ? { background: 'var(--color-primary)', borderColor: 'var(--color-primary)' } : { borderColor: 'var(--color-primary-light)' }}
       >
         {done && <Icon name="check" size={10} color="white" />}
-      </div>
+      </button>
       <span className={`flex-1 text-[13px] font-medium ${done ? 'line-through text-[#8A847C]' : 'text-[#5A5550]'}`}>
         {name}
       </span>
@@ -55,6 +58,9 @@ const TaskItem = ({ done, name, priority }) => {
 const DashboardPage = () => {
   const { user } = useAuth();
   const theme = useThemeColors();
+  const { tasks, toggleTask, getTaskCount } = useTaskStore();
+  const counts = getTaskCount();
+  const recentTasks = tasks.slice(0, 4);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--color-background)' }}>
@@ -110,7 +116,7 @@ const DashboardPage = () => {
         {/* Progress Rings */}
         <div className="flex gap-2.5 mb-3">
           <ProgressRing percentage={72} color={theme.primary} value="72%" subtitle="hoy" label="Productividad" />
-          <ProgressRing percentage={60} color="#A8896C" value="6/10" subtitle="tareas" label="Tareas" />
+          <ProgressRing percentage={Math.round((counts.completed / counts.total) * 100)} color="#A8896C" value={`${counts.completed}/${counts.total}`} subtitle="tareas" label="Tareas" />
           <ProgressRing percentage={50} color="#A89BC0" value="7" subtitle="racha" label="Racha" />
         </div>
 
@@ -120,10 +126,9 @@ const DashboardPage = () => {
           <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Próximas tareas</span>
         </div>
         <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-3.5 mb-3">
-          <TaskItem done={true} name="Entregar reporte semanal" priority="high" />
-          <TaskItem done={false} name="Revisar PR de Django" priority="med" />
-          <TaskItem done={false} name="Diseño de UI dashboard" priority="high" />
-          <TaskItem done={true} name="Standup 9am" priority="low" />
+          {recentTasks.map(task => (
+            <TaskItem key={task.id} done={task.status === 'completed'} name={task.title} priority={task.priority} onToggle={() => toggleTask(task.id)} />
+          ))}
         </div>
 
         {/* Focus tree */}
