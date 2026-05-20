@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 const INITIAL_TASKS = [
-  { id: '1', title: 'Diseño UI — Módulo de tareas', project: 'Dashboard SENATI', priority: 'high', status: 'pending', deadline: 'Hoy 18:00', estimate: '2h est.', progress: 40, createdAt: '2026-05-18' },
-  { id: '2', title: 'Reunión con equipo de QR', project: 'Asistencia Facial', priority: 'high', status: 'pending', deadline: 'Mañana', createdAt: '2026-05-18' },
-  { id: '3', title: 'Revisar migraciones PostgreSQL', project: 'Django Backend', priority: 'med', status: 'pending', createdAt: '2026-05-17' },
+  { id: '1', title: 'Diseño UI — Módulo de tareas', project: 'Dashboard SENATI', priority: 'high', status: 'pending', deadline: '2026-05-20', estimate: '2h est.', progress: 40, createdAt: '2026-05-18' },
+  { id: '2', title: 'Reunión con equipo de QR', project: 'Asistencia Facial', priority: 'high', status: 'pending', deadline: '2026-05-21', createdAt: '2026-05-18' },
+  { id: '3', title: 'Revisar migraciones PostgreSQL', project: 'Django Backend', priority: 'med', status: 'pending', deadline: '2026-05-22', createdAt: '2026-05-17' },
   { id: '4', title: 'Estudiar Arduino — Sensores', project: 'Tarea SENATI · Electrónica', priority: 'med', status: 'pending', createdAt: '2026-05-17' },
-  { id: '5', title: 'Configurar entorno Django', priority: 'low', status: 'completed', createdAt: '2026-05-16' },
-  { id: '6', title: 'Commit — módulo usuarios', priority: 'high', status: 'completed', createdAt: '2026-05-16' },
+  { id: '5', title: 'Configurar entorno Django', priority: 'low', status: 'completed', deadline: '2026-05-18', createdAt: '2026-05-16' },
+  { id: '6', title: 'Commit — módulo usuarios', priority: 'high', status: 'completed', deadline: '2026-05-18', createdAt: '2026-05-16' },
 ];
 
 const useTaskStore = create(
@@ -56,6 +56,9 @@ const useTaskStore = create(
         completed: get().tasks.filter((t) => t.status === 'completed').length,
         total: get().tasks.length,
       }),
+
+      getTasksByDate: (date) => get().tasks.filter((t) => t.deadline === date),
+      getDatesWithTasks: () => [...new Set(get().tasks.filter(t => t.deadline).map(t => t.deadline))],
     }),
     { name: 'task-storage' }
   )

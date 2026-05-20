@@ -54,7 +54,7 @@ const MainLayout = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen relative pb-20" style={{ background: 'var(--color-background)' }}>
+    <div className="min-h-screen relative pb-20" style={{ background: 'var(--color-background)', fontFamily: 'Fredoka, sans-serif' }}>
       {/* Contenido de la página */}
       <Outlet />
 

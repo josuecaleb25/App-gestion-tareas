@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '../../../components/icons';
+import DatePicker from '../../../components/DatePicker';
 
 const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
   const [title, setTitle] = useState('');
@@ -36,9 +37,9 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose}></div>
       
       {/* Modal */}
-      <div className="relative w-full max-w-lg bg-[#FDFAF5] rounded-t-3xl p-5 pb-8 shadow-2xl animate-[slideUp_0.3s_ease-out]">
+      <div className="relative w-full max-w-lg bg-[#FDFAF5] rounded-t-3xl p-5 pb-8 shadow-2xl animate-[slideUp_0.3s_ease-out] max-h-[85vh] overflow-y-auto">
         {/* Handle */}
-        <div className="w-9 h-1 bg-[#EDE6D8] rounded-full mx-auto mb-5"></div>
+        <div className="w-9 h-1 bg-[#EDE6D8] rounded-full mx-auto mb-5 sticky top-0"></div>
 
         {/* Title */}
         <h2 className="text-lg font-semibold text-[#5A5550] mb-4" style={{ fontFamily: 'Fredoka, sans-serif' }}>
@@ -73,17 +74,11 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
         </div>
 
         {/* Deadline input */}
-        <div className="mb-4">
-          <label className="text-[11px] font-semibold text-[#8A847C] uppercase tracking-wider mb-1.5 block">Fecha límite (opcional)</label>
-          <input
-            type="text"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-            placeholder="Ej: Hoy 18:00, Mañana, Viernes"
-            className="w-full py-3 px-4 rounded-2xl text-sm text-[#5A5550] outline-none border-2 border-transparent focus:border-[var(--color-primary-light)] transition-colors"
-            style={{ background: 'var(--color-background)', fontFamily: 'Nunito Sans, sans-serif' }}
-          />
-        </div>
+        <DatePicker 
+          value={deadline} 
+          onChange={setDeadline} 
+          label="Fecha límite (opcional)" 
+        />
 
         {/* Priority */}
         <div className="mb-5">

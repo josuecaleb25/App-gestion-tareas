@@ -31,7 +31,7 @@ const FocusPage = () => {
   const strokeDasharray = `${(progress / 100) * circumference} ${circumference}`;
 
   return (
-    <div className="min-h-screen flex flex-col items-center relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #1E2420 0%, #1A1C1A 100%)' }}>
+    <div className="min-h-screen flex flex-col items-center relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #1E2420 0%, #1A1C1A 100%)', fontFamily: 'Fredoka, sans-serif' }}>
       
       {/* Background circles */}
       <div className="absolute rounded-full opacity-[0.06]" style={{ width: 300, height: 300, background: '#C8DFC4', top: -100, left: -100 }}></div>

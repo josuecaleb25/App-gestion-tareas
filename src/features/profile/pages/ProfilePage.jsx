@@ -19,7 +19,7 @@ const SettingsItem = ({ icon, iconBg, label, trailing, onClick }) => (
     </div>
     <span className="flex-1 text-[13px] font-medium text-[#5A5550]">{label}</span>
     {trailing === 'toggle' ? (
-      <div className="w-9 h-5 rounded-full bg-[#8FAF8A] relative">
+      <div className="w-9 h-5 rounded-full relative" style={{ background: 'var(--color-primary)' }}>
         <div className="absolute w-3.5 h-3.5 rounded-full bg-white top-[3px] right-[3px] shadow-sm"></div>
       </div>
     ) : trailing ? (
