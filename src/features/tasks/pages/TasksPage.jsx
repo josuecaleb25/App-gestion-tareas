@@ -25,7 +25,7 @@ const TaskCard = ({ task, onToggle, onDelete }) => {
   const done = task.status === 'completed';
 
   return (
-    <div className="flex items-start gap-2.5 py-3 border-b border-[rgba(168,137,108,0.15)] last:border-b-0">
+    <div className="flex items-start gap-2.5 py-3 border-b border-[var(--color-border)] last:border-b-0">
       <button 
         onClick={() => onToggle(task.id)}
         className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-all"
@@ -34,8 +34,8 @@ const TaskCard = ({ task, onToggle, onDelete }) => {
         {done && <Icon name="check" size={10} color="white" />}
       </button>
       <div className="flex-1">
-        <div className={`text-[13px] font-medium ${done ? 'line-through text-[#8A847C]' : 'text-[#5A5550]'}`}>{task.title}</div>
-        {task.project && <div className="text-[10px] text-[#8A847C] mt-0.5">{task.project}</div>}
+        <div className={`text-[13px] font-medium ${done ? 'line-through text-[var(--color-text-muted)]' : 'text-[var(--color-text)]'}`}>{task.title}</div>
+        {task.project && <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">{task.project}</div>}
         <div className="flex gap-1.5 mt-1.5 flex-wrap">
           <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold border" style={{ background: p.bg, color: p.color, borderColor: p.border }}>
             {p.label}
@@ -78,11 +78,11 @@ const TasksPage = () => {
   return (
     <div className="min-h-screen" style={{ background: 'var(--color-background)' }}>
       {/* Header */}
-      <div className="px-5 pt-6 pb-5 rounded-b-3xl mb-2" style={{ background: `linear-gradient(160deg, var(--color-primary-pale), var(--color-background))` }}>
+      <div className="px-5 pt-6 pb-5 rounded-b-3xl mb-2" style={{ background: 'var(--color-card)' }}>
         <div className="flex justify-between items-center mb-3.5">
           <div>
-            <h1 className="text-xl font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Mis Tareas</h1>
-            <p className="text-[11px] text-[#8A847C]">{counts.pending} pendientes · {counts.completed} completadas</p>
+            <h1 className="text-xl font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Mis Tareas</h1>
+            <p className="text-[11px] text-[var(--color-text-muted)]">{counts.pending} pendientes · {counts.completed} completadas</p>
           </div>
           <div className="flex gap-2">
             <button 
@@ -92,7 +92,7 @@ const TasksPage = () => {
             >
               <Icon name="plus" size={14} color="white" />
             </button>
-            <button className="w-8 h-8 rounded-[10px] bg-[#FDFAF5] border border-[rgba(168,137,108,0.15)] flex items-center justify-center shadow-sm">
+            <button className="w-8 h-8 rounded-[10px] bg-[var(--color-card)] border border-[var(--color-border)] flex items-center justify-center shadow-sm">
               <Icon name="filter" size={14} color="#8A847C" />
             </button>
           </div>
@@ -109,9 +109,9 @@ const TasksPage = () => {
       <div className="px-4 pb-24 overflow-y-auto">
         {filter !== 'all' ? (
           // Filtered view
-          <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-4">
+          <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-4">
             {filteredTasks().length === 0 ? (
-              <p className="text-center text-sm text-[#8A847C] py-6">No hay tareas en esta categoría</p>
+              <p className="text-center text-sm text-[var(--color-text-muted)] py-6">No hay tareas en esta categoría</p>
             ) : (
               filteredTasks().map(task => (
                 <TaskCard key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
@@ -125,9 +125,9 @@ const TasksPage = () => {
               <>
                 <div className="flex items-center gap-1.5 mt-4 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D4A898]"></div>
-                  <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Alta prioridad</span>
+                  <span className="text-sm font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Alta prioridad</span>
                 </div>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-4 mb-2.5">
+                <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-4 mb-2.5">
                   {pendingHigh.map(task => (
                     <TaskCard key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
                   ))}
@@ -139,9 +139,9 @@ const TasksPage = () => {
               <>
                 <div className="flex items-center gap-1.5 mt-4 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#A89BC0]"></div>
-                  <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Prioridad media</span>
+                  <span className="text-sm font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Prioridad media</span>
                 </div>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-4 mb-2.5">
+                <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-4 mb-2.5">
                   {pendingMed.map(task => (
                     <TaskCard key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
                   ))}
@@ -153,9 +153,9 @@ const TasksPage = () => {
               <>
                 <div className="flex items-center gap-1.5 mt-4 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-primary)' }}></div>
-                  <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Prioridad baja</span>
+                  <span className="text-sm font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Prioridad baja</span>
                 </div>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-4 mb-2.5">
+                <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-4 mb-2.5">
                   {pendingLow.map(task => (
                     <TaskCard key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
                   ))}
@@ -167,9 +167,9 @@ const TasksPage = () => {
               <>
                 <div className="flex items-center gap-1.5 mt-4 mb-2">
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-primary)' }}></div>
-                  <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Completadas</span>
+                  <span className="text-sm font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>Completadas</span>
                 </div>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-4">
+                <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-4">
                   {completed.map(task => (
                     <TaskCard key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
                   ))}

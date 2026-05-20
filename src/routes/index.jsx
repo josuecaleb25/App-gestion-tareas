@@ -10,7 +10,6 @@ import CalendarPage from '../features/calendar/pages/CalendarPage';
 import StatsPage from '../features/profile/pages/StatsPage';
 import ProfilePage from '../features/profile/pages/ProfilePage';
 import ThemePage from '../features/profile/pages/ThemePage';
-import FocusPage from '../features/tasks/pages/FocusPage';
 import HabitsPage from '../features/tasks/pages/HabitsPage';
 import SearchPage from '../features/tasks/pages/SearchPage';
 
@@ -61,9 +60,6 @@ export default function AppRouter() {
           <Route path="/habits" element={<HabitsPage />} />
           <Route path="/search" element={<SearchPage />} />
         </Route>
-
-        {/* Focus mode (sin bottom nav) */}
-        <Route path="/focus" element={<ProtectedRoute><FocusPage /></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

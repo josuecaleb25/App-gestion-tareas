@@ -59,7 +59,7 @@ const MainLayout = () => {
       <Outlet />
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-[#FDFAF5] border-t border-[rgba(168,137,108,0.15)] px-4 pt-2 pb-4 flex justify-around items-center z-40">
+      <nav className="fixed bottom-0 left-0 right-0 px-4 pt-2 pb-4 flex justify-around items-center z-40" style={{ background: 'var(--color-card)', borderTop: '1px solid var(--color-border)' }}>
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (

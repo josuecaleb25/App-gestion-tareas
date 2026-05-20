@@ -50,9 +50,14 @@ const useThemeStore = create(
   persist(
     (set, get) => ({
       currentTheme: 'rose',
+      darkMode: false,
       
       setTheme: (themeKey) => {
         set({ currentTheme: themeKey });
+      },
+
+      toggleDarkMode: () => {
+        set({ darkMode: !get().darkMode });
       },
 
       getTheme: () => {

@@ -32,3 +32,8 @@ body {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+/* Dark mode global overrides */
+body.dark-mode {
+  color: #EDE6D8;
+}

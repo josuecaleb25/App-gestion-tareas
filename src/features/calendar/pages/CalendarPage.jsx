@@ -93,24 +93,24 @@ const CalendarPage = () => {
       <div className="px-4 pb-24 pt-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-3.5">
-          <h1 className="text-xl font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>
+          <h1 className="text-xl font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>
             {MONTHS[currentMonth]} {currentYear}
           </h1>
           <div className="flex gap-2">
-            <button onClick={prevMonth} className="w-8 h-8 rounded-full bg-[#FDFAF5] border border-[rgba(168,137,108,0.15)] flex items-center justify-center shadow-sm">
+            <button onClick={prevMonth} className="w-8 h-8 rounded-full bg-[var(--color-card)] border border-[var(--color-border)] flex items-center justify-center shadow-sm">
               <Icon name="arrowLeft" size={14} color="#8A847C" />
             </button>
-            <button onClick={nextMonth} className="w-8 h-8 rounded-full bg-[#FDFAF5] border border-[rgba(168,137,108,0.15)] flex items-center justify-center shadow-sm">
+            <button onClick={nextMonth} className="w-8 h-8 rounded-full bg-[var(--color-card)] border border-[var(--color-border)] flex items-center justify-center shadow-sm">
               <Icon name="arrowRight" size={14} color="#8A847C" />
             </button>
           </div>
         </div>
 
         {/* Calendar grid */}
-        <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-3.5 mb-4">
+        <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-3.5 mb-4">
           <div className="grid grid-cols-7 gap-0.5 mb-1">
             {DAYS_HEADER.map((d) => (
-              <div key={d} className="text-center text-[10px] font-bold text-[#8A847C] uppercase tracking-wider py-1">{d}</div>
+              <div key={d} className="text-center text-[10px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider py-1">{d}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 gap-0.5">
@@ -145,16 +145,16 @@ const CalendarPage = () => {
         {/* Agenda for selected day */}
         <div className="flex items-center gap-1.5 mb-3">
           <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-primary)' }}></div>
-          <span className="text-sm font-semibold text-[#5A5550]" style={{ fontFamily: 'Fredoka, sans-serif' }}>
+          <span className="text-sm font-semibold text-[var(--color-text)]" style={{ fontFamily: 'Fredoka, sans-serif' }}>
             {selectedDate === todayStr ? 'Hoy' : formatDisplayDate(selectedDate)}
           </span>
         </div>
 
         {selectedTasks.length === 0 ? (
-          <div className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-6 text-center">
+          <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-6 text-center">
             <Icon name="calendar" size={32} color="#8A847C" className="mx-auto mb-2 opacity-40" />
-            <p className="text-sm text-[#8A847C]">No hay tareas para este día</p>
-            <p className="text-[11px] text-[#8A847C] mt-1 opacity-60">Agrega una tarea con fecha desde la sección de Tareas</p>
+            <p className="text-sm text-[var(--color-text-muted)]">No hay tareas para este día</p>
+            <p className="text-[11px] text-[var(--color-text-muted)] mt-1 opacity-60">Agrega una tarea con fecha desde la sección de Tareas</p>
           </div>
         ) : (
           <div className="space-y-2">
@@ -162,7 +162,7 @@ const CalendarPage = () => {
               const p = priorityStyles[task.priority];
               const done = task.status === 'completed';
               return (
-                <div key={task.id} className="bg-[#FDFAF5] rounded-2xl border border-[rgba(168,137,108,0.15)] shadow-sm p-3.5 relative overflow-hidden">
+                <div key={task.id} className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] shadow-sm p-3.5 relative overflow-hidden">
                   <div className="absolute top-0 left-0 bottom-0 w-[3px] rounded-l-2xl" style={{ background: p.color }}></div>
                   <div className="flex items-center gap-2.5 pl-2">
                     <button 
@@ -173,8 +173,8 @@ const CalendarPage = () => {
                       {done && <Icon name="check" size={10} color="white" />}
                     </button>
                     <div className="flex-1">
-                      <div className={`text-[13px] font-semibold ${done ? 'line-through text-[#8A847C]' : 'text-[#5A5550]'}`}>{task.title}</div>
-                      {task.project && <div className="text-[10px] text-[#8A847C] mt-0.5">{task.project}</div>}
+                      <div className={`text-[13px] font-semibold ${done ? 'line-through text-[var(--color-text-muted)]' : 'text-[var(--color-text)]'}`}>{task.title}</div>
+                      {task.project && <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">{task.project}</div>}
                     </div>
                     <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold border" style={{ background: p.bg, color: p.color, borderColor: p.border }}>
                       {task.priority === 'high' ? 'Alta' : task.priority === 'med' ? 'Media' : 'Baja'}

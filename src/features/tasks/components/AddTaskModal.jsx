@@ -37,7 +37,7 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose}></div>
       
       {/* Modal */}
-      <div className="relative w-full max-w-lg bg-[#FDFAF5] rounded-t-3xl p-5 pb-8 shadow-2xl animate-[slideUp_0.3s_ease-out] max-h-[85vh] overflow-y-auto">
+      <div className="relative w-full max-w-lg bg-[var(--color-card)] rounded-t-3xl p-5 pb-8 shadow-2xl animate-[slideUp_0.3s_ease-out] max-h-[85vh] overflow-y-auto">
         {/* Handle */}
         <div className="w-9 h-1 bg-[#EDE6D8] rounded-full mx-auto mb-5 sticky top-0"></div>
 
@@ -106,7 +106,7 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
         <div className="flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 py-3.5 rounded-2xl text-sm font-semibold text-[#8A847C] border border-[rgba(168,137,108,0.15)]"
+            className="flex-1 py-3.5 rounded-2xl text-sm font-semibold text-[#8A847C] border border-[var(--color-border)]"
           >
             Cancelar
           </button>
